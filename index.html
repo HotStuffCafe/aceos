@@ -1,1 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.C.E - India's Sports Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
 
+    <main class="flex-grow flex items-center justify-center p-4">
+
+        <div id="landing-page" class="max-w-3xl text-center space-y-6">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight">
+                India's Sports <span class="text-blue-600">Ecosystem</span> is Coming.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600">
+                One platform connecting Athletes, Coaches, Institutes and Tournaments.
+            </p>
+            <button onclick="showSection('registration-page')" class="mt-8 px-8 py-4 bg-blue-600 text-white text-lg font-bold rounded-full shadow-lg hover:bg-blue-700 transition transform hover:-translate-y-1">
+                Join the Waitlist
+            </button>
+        </div>
+
+        <div id="registration-page" class="hidden w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8">
+            <h2 class="text-3xl font-bold mb-6 border-b pb-4">Join the Waitlist</h2>
+            
+            <form id="waitlist-form" onsubmit="submitForm(event)">
