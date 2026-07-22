@@ -54,6 +54,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Secret Admin Route to view data online
+app.get('/api/admin/view-data', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM waitlist ORDER BY registration_date DESC');
+        // Displays the data as a neatly formatted JSON page
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(result.rows, null, 2));
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching data");
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`A.C.E. Server is actively running on port ${PORT}`);
