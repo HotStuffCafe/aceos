@@ -26,3 +26,26 @@
             <h2 class="text-3xl font-bold mb-6 border-b pb-4">Join the Waitlist</h2>
             
             <form id="waitlist-form" onsubmit="submitForm(event)">
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-gray-700 mb-2">I am a: *</label>
+                    <select id="userType" name="userType" required onchange="handleUserTypeChange()" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="" disabled selected>Select your role...</option>
+                        <option value="Athlete">🏃 Athlete / Player</option>
+                        <option value="Coach">🧑‍🏫 Coach</option>
+                        <option value="Academy">🏟️ Academy / Institute</option>
+                        <option value="Tournament">🏆 Tournament Organizer</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Full Name *</label>
+                        <input type="text" name="fullName" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Mobile Number *</label>
+                        <input type="tel" name="mobile" required placeholder="Mobile Number" class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label
