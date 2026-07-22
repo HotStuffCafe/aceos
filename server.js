@@ -54,16 +54,89 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Secret Admin Route to view data online
+// HTML Admin Dashboard Route
 app.get('/api/admin/view-data', async (req, res) => {
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>A.C.E. Admin Dashboard</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+        </head>
+        <body class="bg-gray-100 p-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold text-gray-900">A.C.E. Waitlist Dashboard</h1>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full">Live Database</span>
+                </div>
+                
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mobile</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sport & Level</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body" class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td colspan="7" class="px-6 py-4 text-center text-gray-500">Loading entries...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                async function loadData() {
+                    try {
+                        const response = await fetch('/api/admin/json-data');
+                        const data = await response.json();
+                        const tbody = document.getElementById('table-body');
+                        
+                        if (data.length === 0) {
+                            tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">No registrations found yet.</td></tr>';
+                            return;
+                        }
+
+                        tbody.innerHTML = data.map(row => `
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#${row.id}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-blue-600">${row.user_type}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${row.name}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row.mobile}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row.city}, ${row.state}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row.sport} (<span class="text-gray-700 font-semibold">${row.level}</span>)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">${new Date(row.registration_date).toLocaleString()}</td>
+                            </tr>
+                        `).join('');
+                    } catch (error) {
+                        console.error('Error loading data:', error);
+                    }
+                }
+                loadData();
+            </script>
+        </body>
+        </html>
+    `);
+});
+
+// A helper JSON route to feed data into our new HTML table smoothly
+app.get('/api/admin/json-data', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM waitlist ORDER BY registration_date DESC');
-        // Displays the data as a neatly formatted JSON page
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(result.rows, null, 2));
+        res.json(result.rows);
     } catch (error) {
-        console.error(error);
-        res.status(500).send("Error fetching data");
+        res.status(500).json({ error: "Error fetching data" });
     }
 });
 
