@@ -48,4 +48,190 @@
                         <input type="tel" name="mobile" required placeholder="Mobile Number" class="w-full p-3 border border-gray-300 rounded-lg">
                     </div>
                     <div>
-                        <label
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Email (Optional)</label>
+                        <input type="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1/2">
+                            <label class="block text-sm font-bold text-gray-700 mb-1">City *</label>
+                            <input type="text" name="city" required class="w-full p-3 border border-gray-300 rounded-lg">
+                        </div>
+                        <div class="w-1/2">
+                            <label class="block text-sm font-bold text-gray-700 mb-1">State *</label>
+                            <input type="text" name="state" required class="w-full p-3 border border-gray-300 rounded-lg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 pb-6 border-b">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Primary Sport *</label>
+                        <input type="text" name="primarySport" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Level *</label>
+                        <select name="level" required class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="" disabled selected>Select level...</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="District">District</option>
+                            <option value="State">State</option>
+                            <option value="National">National</option>
+                            <option value="International">International</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="dynamic-questions" class="mb-8 hidden">
+                    <h3 class="text-xl font-bold mb-4 text-blue-700">Tell us more</h3>
+                    
+                    <div id="qs-athlete" class="hidden space-y-4">
+                        <div class="flex gap-4">
+                            <input type="number" name="athleteAge" placeholder="Age" class="w-1/2 p-3 border border-gray-300 rounded-lg">
+                            <select name="athleteGender" class="w-1/2 p-3 border border-gray-300 rounded-lg">
+                                <option value="">Gender...</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <label class="block text-sm font-bold text-gray-700">Biggest Challenge (Select multiple)</label>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <label><input type="checkbox" name="athleteChallenges" value="Finding a coach"> Finding a coach</label>
+                            <label><input type="checkbox" name="athleteChallenges" value="Finding tournaments"> Finding tournaments</label>
+                            <label><input type="checkbox" name="athleteChallenges" value="Sponsorship"> Sponsorship</label>
+                            <label><input type="checkbox" name="athleteChallenges" value="Training facilities"> Training facilities</label>
+                            <label><input type="checkbox" name="athleteChallenges" value="Nutrition"> Nutrition</label>
+                            <label><input type="checkbox" name="athleteChallenges" value="Injury support"> Injury support</label>
+                        </div>
+                        <label class="block text-sm font-bold text-gray-700 mt-2">What feature would help you most?</label>
+                        <textarea name="athleteFeature" rows="2" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
+                    </div>
+
+                    <div id="qs-coach" class="hidden space-y-4">
+                        <input type="number" name="coachExperience" placeholder="Years of Experience" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <input type="text" name="coachSports" placeholder="Sports Coached" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <select name="coachCertified" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="">Certified?</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="text" name="coachChallenge" placeholder="Biggest Challenge" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <select name="coachFindAthletes" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="">Interested in finding more athletes?</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div id="qs-academy" class="hidden space-y-4">
+                        <input type="text" name="academyName" placeholder="Academy Name" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <input type="text" name="academySports" placeholder="Sports Offered" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <input type="number" name="academyAthletesCount" placeholder="Number of Athletes" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <select name="academyHostsTournaments" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="">Do you host tournaments?</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="text" name="academyChallenge" placeholder="Biggest Challenge" class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button type="button" onclick="showSection('landing-page')" class="text-gray-500 hover:text-gray-800">Back</button>
+                    <button type="submit" class="px-8 py-3 bg-blue-600 text-white font-bold rounded-lg shadow hover:bg-blue-700 transition">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="thank-you-page" class="hidden max-w-2xl text-center space-y-6 bg-white p-10 rounded-2xl shadow-xl">
+            <div class="text-6xl mb-4">🎉</div>
+            <h2 class="text-4xl font-extrabold text-gray-900">Thank you for joining A.C.E.</h2>
+            <p class="text-xl text-gray-600 leading-relaxed">
+                You're among the first members helping shape India's sports ecosystem.<br>
+                We'll keep you updated and invite you to early access.
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        // Navigation Logic
+        function showSection(sectionId) {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('registration-page').classList.add('hidden');
+            document.getElementById('thank-you-page').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Dynamic Field Logic
+        function handleUserTypeChange() {
+            const userType = document.getElementById('userType').value;
+            const dynamicContainer = document.getElementById('dynamic-questions');
+            
+            document.getElementById('qs-athlete').classList.add('hidden');
+            document.getElementById('qs-coach').classList.add('hidden');
+            document.getElementById('qs-academy').classList.add('hidden');
+
+            if (userType === 'Tournament') {
+                dynamicContainer.classList.add('hidden');
+                return;
+            }
+
+            dynamicContainer.classList.remove('hidden');
+            if (userType === 'Athlete') document.getElementById('qs-athlete').classList.remove('hidden');
+            if (userType === 'Coach') document.getElementById('qs-coach').classList.remove('hidden');
+            if (userType === 'Academy') document.getElementById('qs-academy').classList.remove('hidden');
+        }
+
+        // Updated Submit Logic to connect to PostgreSQL backend
+        function submitForm(event) {
+            event.preventDefault();
+            const form = document.getElementById('waitlist-form');
+            const formData = new FormData(form);
+            const dataObj = Object.fromEntries(formData.entries());
+
+            dataObj.athleteChallenges = formData.getAll('athleteChallenges');
+
+            // Format data schema matching our database structure
+            const dbRecord = {
+                userType: dataObj.userType,
+                name: dataObj.fullName,
+                mobile: dataObj.mobile,
+                email: dataObj.email || null,
+                city: dataObj.city,
+                state: dataObj.state,
+                sport: dataObj.primarySport,
+                level: dataObj.level,
+                questionnaireAnswers: extractAnswers(dataObj, dataObj.userType)
+            };
+
+            // Send data to our new backend API using fetch
+            fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dbRecord)
+            }).then(response => {
+                if (response.ok) {
+                    showSection('thank-you-page');
+                    form.reset();
+                    document.getElementById('dynamic-questions').classList.add('hidden');
+                } else {
+                    alert("Oops! Something went wrong saving your data.");
+                }
+            }).catch(error => {
+                console.error("Fetch Error:", error);
+                alert("Network error: Could not connect to the server.");
+            });
+        }
+
+        function extractAnswers(data, type) {
+            if (type === 'Athlete') return { age: data.athleteAge, gender: data.athleteGender, challenges: data.athleteChallenges, feature: data.athleteFeature };
+            if (type === 'Coach') return { experience: data.coachExperience, sports: data.coachSports, certified: data.coachCertified, challenge: data.coachChallenge, findAthletes: data.coachFindAthletes };
+            if (type === 'Academy') return { name: data.academyName, sports: data.academySports, athletes: data.academyAthletesCount, tournaments: data.academyHostsTournaments, challenge: data.academyChallenge };
+            return {};
+        }
+    </script>
+</body>
+</html>
